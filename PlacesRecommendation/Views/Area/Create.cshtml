@@ -1,0 +1,20 @@
+﻿@model AddAreaViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>add a New Place</h1>
+<hr />
+<form method="post" asp-action="create">
+    <div class="form-group">
+        <label asp-for="Name">Place Name</label>
+        <input asp-for="Name"class="form-control"/>
+        <span class="text-danger" asp-validation-for="Name"></span>
+             
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    
+</form>
+

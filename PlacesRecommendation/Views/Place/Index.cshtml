@@ -1,0 +1,60 @@
+﻿@model List<PlaceViewModel>
+@{
+    ViewData["Title"] = "All Places";
+}
+@*@if (User.IsInRole("Admin"))
+{
+    <a class="btn btn-primary" asp-action="Create">Add Place</a>
+}*@
+<a class="btn btn-primary" asp-action="Create">Add Place</a>
+
+@if(Model.Any()){
+    <h1>All Places</h1>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>
+                    #
+                </td>
+                <td>
+                    Place Name
+                </td>
+                <td>
+                    Area Name
+                </td>
+                <td>
+                    Location
+                </td>
+                <td>
+                    Rate From 10
+                </td>
+                <td>
+                    Action
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @for(int i = 0,j=1; i < Model.Count;++i,++j )
+            {
+                <tr>
+                    <td>@j</td>
+                    <td>@Model[i].PlaceName</td>
+                    <td>@Model[i].AreaName</td>
+                    <td>@Model[i].Location</td>
+                    <td>@Model[i].Rate</td>
+                    <td><a onclick="return confirm('Are You Sure You Want to Delete This Area ?' )"
+                        class="btn btn-danger js-delete" 
+                        asp-action="Delete" asp-route-id="@Model[i].PlaceId">
+                        <i class="bi bi-trash"></i>
+                        Delete
+                    </a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else{
+    <h2>No Places Yet</h2>
+}

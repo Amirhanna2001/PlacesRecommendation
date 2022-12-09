@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "All Categories";
+}
+@if(User.IsInRole("Admin"))
+{
+<a class="btn btn-primary" asp-action="Create">Add Category</a>
+}
+<a class="btn btn-primary" asp-action="Create">Add Category</a>
+@if(Model.Any()){
+    <h1>All Categories</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>
+                    #
+                </td>
+                <td>
+                     Type
+                </td>
+                <td>
+                     Action
+                </td>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int j= 1;}
+            @foreach(var cat in Model)
+            {
+                <tr>
+                    <td>@j</td>
+                    <td>@cat.Type</td>
+                    <td>
+                        @*@if (User.IsInRole("Admin"))
+                        {*@
+                            <a onclick="return confirm('Are You Sure You Want to Delete This Area ?' )"
+                                class="btn btn-danger js-delete" 
+                                asp-action="Delete" asp-route-id="@cat.Id">
+                                <i class="bi bi-trash"></i>
+                                Delete
+                            </a>
+                        @*}*@
+                        
+                    <a asp-action="GetAll" asp-route-id="@cat.Id" class="btn btn-secondary">Get All</a>
+                    </td>
+                </tr>
+                {
+                    ++j;
+                }
+            }
+        </tbody>
+    </table>
+
+}
+else{
+    <h2>No Categories Yet</h2>
+}

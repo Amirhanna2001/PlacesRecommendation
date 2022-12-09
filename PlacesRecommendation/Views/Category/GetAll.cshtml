@@ -1,0 +1,68 @@
+﻿@model List<CategoryListViewModel>
+@{
+    ViewData["Title"] = "Get All";
+}
+
+<hr />
+
+@if(Model.Any()){
+    <h2>@Model[0].Type</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>
+                    #
+                </td>
+                <td>
+                     Type
+                </td>
+                <td>
+                     Place Name 
+                </td>
+                <td>
+                     Place Location
+                </td>
+                <td>
+                     Rate
+                </td>
+                <td>
+                     Action
+                </td>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int j= 1;}
+            @foreach(var cat in Model)
+            {
+                <tr>
+                    <td>@j</td>
+                    <td>@cat.Type</td>
+                    <td>@cat.PlaceName</td>
+                    <td>@cat.PlaceLocation</td>
+                    <td>@cat.Rate</td>
+                    <td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a onclick="return confirm('Are You Sure You Want to Delete This Area ?' )"
+                                class="btn btn-danger js-delete" 
+                                asp-action="Delete" asp-route-id="@cat.PlaceId">
+                                <i class="bi bi-trash"></i>
+                                Delete
+                            </a>
+                        }
+                        
+                    </td>
+                </tr>
+                {
+                    ++j;
+                }
+            }
+        </tbody>
+    </table>
+
+}
+else{
+    <h2>No Categories Yet</h2>
+}

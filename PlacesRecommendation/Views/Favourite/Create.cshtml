@@ -1,0 +1,20 @@
+﻿@model UserFavouritViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Add a New Place To Favourites</h1>
+<hr />
+<form method="post" asp-action="Create">
+    <div>
+        <label asp-for="PlaceName"></label>
+        <input asp-for="PlaceName"class="form-control"/>
+        <span class="text-danger" asp-validation-for="PlaceName"></span>
+             
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    
+</form>
+

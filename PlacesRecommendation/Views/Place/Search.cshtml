@@ -1,0 +1,13 @@
+﻿@model SearchViewModel
+@{
+    ViewData["Title"] = "Search";
+}
+<h3>Type The Place You Want</h3>
+<hr />
+<form method="post" class="pt-1" >
+    <div class="form-group">
+        <input class="form-control" asp-for="Item"/>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

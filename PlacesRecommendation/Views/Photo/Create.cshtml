@@ -1,0 +1,32 @@
+﻿@model PhotoViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Add a New Photo</h1>
+<hr />
+<form method="post" asp-action="Create" enctype="multipart/form-data" >
+    <div>
+        <label asp-for="PlaceId"></label>
+        <input asp-for="PlaceId"class="form-control"/>
+        <span class="text-danger" asp-validation-for="PlaceId"></span>
+             
+    </div>
+    <div>
+        <label asp-for="MenuId"></label>
+        <input asp-for="MenuId"class="form-control" />
+        <span class="text-danger" asp-validation-for="MenuId"></span>
+             
+    </div>
+    <div class="custom-file">
+        <label asp-for="Image" class="custom-file-label"></label>
+        <input asp-for="Image" class="custom-file-input" type="file"/>
+        <span class="text-danger" asp-validation-for="Image"></span>
+             
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    
+</form>
+

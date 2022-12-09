@@ -1,0 +1,20 @@
+﻿@model MenuViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Add a New Menu</h1>
+<hr />
+<form method="post" asp-action="create">
+    <div>
+        <label asp-for="PlaceId"></label>
+        <input asp-for="PlaceId"class="form-control"/>
+        <span class="text-danger" asp-validation-for="PlaceId"></span>
+             
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    
+</form>
+

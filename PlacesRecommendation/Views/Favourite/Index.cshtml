@@ -1,0 +1,50 @@
+﻿@model List<UserFavouritViewModel>
+@{
+    ViewData["Title"] = "All Favourites";
+}
+<a class="btn btn-primary" asp-action="Create">Add A New Favourite</a>
+@*@if (User.IsInRole("Admin"))
+{
+    
+}*@
+
+@if(Model.Any()){
+    <h1>All Favourites</h1>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>
+                    #
+                </td>
+                <td>
+                     Place Name
+                </td>
+                <td>
+                     Actions
+                </td>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @for(int i = 0,j=1; i < Model.Count;++i,++j )
+            {
+                <tr>
+                    <td>@j</td>
+                    <td>@Model[i].PlaceName</td>
+                    <td><a onclick="return confirm('Are You Sure You Want to Delete This Area ?' )"
+                        class="btn btn-danger js-delete" 
+                        asp-action="Delete" asp-route-id="@Model[i].FavId">
+                        <i class="bi bi-trash"></i>
+                        Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+else{
+    <h2>No Favourites  Yet</h2>
+}
