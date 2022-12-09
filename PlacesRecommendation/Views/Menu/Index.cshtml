@@ -2,11 +2,11 @@
 @{
     ViewData["Title"] = "All Menus";
 }
-@if (User.IsInRole("Admin"))
-{
+@*@if (User.IsInRole("Admin"))
+{*@
     <a class="btn btn-primary" asp-action="Create">Add Menu</a>
 
-}
+@*}*@
  <a class="btn btn-primary" asp-action="Create">Add Menu</a>
 @if(Model.Any()){
     <h1>All Menus</h1>

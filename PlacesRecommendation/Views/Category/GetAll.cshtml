@@ -43,15 +43,15 @@
                     <td>@cat.PlaceLocation</td>
                     <td>@cat.Rate</td>
                     <td>
-                        @if (User.IsInRole("Admin"))
-                        {
+                      @*  @if (User.IsInRole("Admin"))
+                        {*@
                             <a onclick="return confirm('Are You Sure You Want to Delete This Area ?' )"
                                 class="btn btn-danger js-delete" 
                                 asp-action="Delete" asp-route-id="@cat.PlaceId">
                                 <i class="bi bi-trash"></i>
                                 Delete
                             </a>
-                        }
+                        @*}*@
                         
                     </td>
                 </tr>
