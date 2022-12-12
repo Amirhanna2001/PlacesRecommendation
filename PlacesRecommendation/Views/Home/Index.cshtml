@@ -1,6 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@if (User.IsInRole("Admin"))
+{
+    <h1>Hello Admin</h1>
+}
 <div class="text-center">
     <a class="btn btn-primary" asp-action="ViewTrend" asp-controller="Place" style="width=10000">
         View Trend

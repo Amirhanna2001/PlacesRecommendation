@@ -2,12 +2,10 @@
 @{
     ViewData["Title"] = "All Places";
 }
-@*@if (User.IsInRole("Admin"))
+@if (User.IsInRole("Admin"))
 {
     <a class="btn btn-primary" asp-action="Create">Add Place</a>
-}*@
-<a class="btn btn-primary" asp-action="Create">Add Place</a>
-
+}
 @if(Model.Any()){
     <h1>All Places</h1>
     <hr />

@@ -2,10 +2,10 @@
 @{
     ViewData["Title"] = "All Photos";
 }
-@*@if (User.IsInRole("Admin"))
+@if (User.IsInRole("Admin"))
 {
     <a class="btn btn-primary" asp-action="Create">Add Photo</a>
-}*@
+}
 
  <a class="btn btn-primary" asp-action="Create">Add Photo</a>
 @if(Model.Any()){

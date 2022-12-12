@@ -2,11 +2,10 @@
 @{
     ViewData["Title"] = "All Categories";
 }
-@*@if(User.IsInRole("Admin"))
-{*@
-<a class="btn btn-primary" asp-action="Create">Add Category</a>
-@*}*@
-<a class="btn btn-primary" asp-action="Create">Add Category</a>
+@if (User.IsInRole("Admin"))
+{
+    <a class="btn btn-primary" asp-action="Create">Add Category</a>
+}
 @if(Model.Any()){
     <h1>All Categories</h1>
     <table class="table table-striped">
