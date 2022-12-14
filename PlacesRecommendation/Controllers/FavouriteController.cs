@@ -48,7 +48,7 @@ namespace PlacesRecommendation.Controllers
             }
             return View(userFavs);
         }
-        [Authorize(Roles = "Admin")]
+
         public IActionResult Create()
         {
             return View();
@@ -116,7 +116,6 @@ namespace PlacesRecommendation.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,6 +132,44 @@ namespace PlacesRecommendation.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null) return NotFound();
+
+        //    Favourite fav = await _context.Favourites.FindAsync(id);
+
+        //    if (fav == null) return NotFound();
+        //    IdentityUser user = await _userManager.GetUserAsync(HttpContext.User);
+        //    Place place = await _context.Places.FindAsync(fav.PlaceId);
+        //    UserFavouritViewModel model = new UserFavouritViewModel()
+        //    {
+        //        UserId = user.Id,
+        //        FavId = fav.Id,
+        //        PlaceId = place.Id,
+
+        //    };
+
+        //    return View(model);
+        //}
+        //[HttpPost]
+        //public async Task<IActionResult> Edit(UserFavouritViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        ModelState.AddModelError("Name", "Error");
+        //        return View(model);
+        //    }
+        //    Place = await _context.Areas.FindAsync(model.Id);
+
+        //    if (area == null) return NotFound();
+
+        //    area.Id = model.Id;
+        //    area.Name = model.Name;
+
+        //    _context.SaveChanges();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
     }
 }

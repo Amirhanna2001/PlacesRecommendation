@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 namespace PlacesRecommendation.Controllers
 {
     [Authorize]
-    public class CategoryController : Controller
+    public  class CategoryController :Controller
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public CategoryController(ApplicationDbContext context)
         {
@@ -22,18 +22,9 @@ namespace PlacesRecommendation.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //var categories = await _context.Categories.ToListAsync();
-            //Dictionary<string, int> cats = new();
-            //foreach (var category in categories)
-            //{
-            //    if(!cats.ContainsKey(category.Type))
-            //        cats.Add(category.Type, category.Id);
-            //}
-            return View(
-                await _context.Categories.ToListAsync()
-                );
+            return View(await _context.Categories.ToListAsync() );
         }
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -61,7 +52,7 @@ namespace PlacesRecommendation.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null )

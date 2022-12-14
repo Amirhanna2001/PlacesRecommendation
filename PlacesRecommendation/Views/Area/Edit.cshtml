@@ -1,13 +1,13 @@
 ﻿@model AddAreaViewModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit Area";
 }
-
-<h1>Add a New Area</h1>
+<h2>Edit Area</h2>
 <hr />
-<form method="post" asp-action="Create">
+<form method="post" asp-action="Edit">
     <div class="form-group">
-        <label asp-for="Name">Place Name</label>
+        <input hidden asp-for="Id" />
+        <label asp-for="Name">Place Area</label>
         <input asp-for="Name"class="form-control"/>
         <span class="text-danger" asp-validation-for="Name"></span>
              
@@ -17,4 +17,3 @@
     </div>
     
 </form>
-

@@ -19,7 +19,7 @@ namespace PlacesRecommendation.Controllers
             _context = context;
         }
         
-        public async Task< IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             return View(await _context.Areas.ToListAsync());
         }
@@ -66,6 +66,39 @@ namespace PlacesRecommendation.Controllers
             _context.SaveChanges();
 
 
+            return RedirectToAction(nameof(Index));
+        }
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null) return NotFound();
+            Area area =await _context.Areas.FindAsync(id);
+
+            if (area == null) return NotFound();
+            AddAreaViewModel model = new()
+            {
+                Id = area.Id,
+                Name = area.Name
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(AddAreaViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("Name","Error");
+                return View(model);
+            }
+            Area area =await _context.Areas.FindAsync(model.Id);
+
+            if (area == null) return NotFound();
+
+            area.Id = model.Id;
+            area.Name = model.Name;
+            
+            _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
     }

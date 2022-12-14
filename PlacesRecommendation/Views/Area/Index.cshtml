@@ -17,10 +17,12 @@
                 </td>
                 <td>
                      Area Name
+                </td>@if (User.IsInRole("Admin"))
+                {
+                    <td>
+                     Action
                 </td>
-                <td>
-                     Actions
-                </td>
+                }
                 
             </tr>
         </thead>
@@ -30,12 +32,20 @@
                 <tr>
                     <td>@j</td>
                     <td>@Model[i].Name</td>
-                    <td><a onclick="return confirm('Are You Sure You Want to Delete This Area ?' )"
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td><a onclick="return confirm('Are You Sure You Want to Delete This Area ?' )"
                         class="btn btn-danger js-delete" 
                         asp-action="Delete" asp-route-id="@Model[i].Id">
                         <i class="bi bi-trash"></i>
                         Delete
+                    </a>
+                    <a asp-action="Edit" asp-route-id="@Model[i].Id" class="btn btn-primary">
+                        <i class="bi bi-trash"></i>
+                        Edit
                     </a></td>
+                    }
+                    
                 </tr>
             }
         </tbody>

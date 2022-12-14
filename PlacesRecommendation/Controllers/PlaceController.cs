@@ -115,6 +115,7 @@ namespace PlacesRecommendation.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Search(SearchViewModel search)
         {
            return View(nameof(Index),await _context.Places
@@ -132,6 +133,47 @@ namespace PlacesRecommendation.Controllers
                     AreaName = area.Name
                 }
                 ).ToListAsync());
+        }
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null) return NotFound();
+            Place place = await _context.Places.FindAsync(id);
+
+            if (place == null) return NotFound();
+            AddPlaceViewModel model = new()
+            {
+                AreaId = place.AreaId,
+                Name = place.Name,
+                Rate = place.Rate,
+                Location = place.Location,
+                Id = place.Id,
+            };
+
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(AddPlaceViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("Name", "Error");
+                return View(model);
+            }
+            Place place =await  _context.Places.FindAsync(model.Id);
+
+            if (place == null) return NotFound();
+
+             //_context.Places.Remove(place);
+
+            place.Name = model.Name;
+            place.Rate = model.Rate;
+            place.AreaId = model.AreaId;
+            place.Location = model.Location;
+
+            //await _context.Places.AddAsync(place);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

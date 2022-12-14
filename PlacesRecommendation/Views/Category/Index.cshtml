@@ -15,11 +15,15 @@
                     #
                 </td>
                 <td>
-                     Type
+                    Type
                 </td>
-                <td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
                      Action
                 </td>
+                }
+                
                 
             </tr>
         </thead>
@@ -32,15 +36,15 @@
                     <td>@j</td>
                     <td>@cat.Type</td>
                     <td>
-                        @*@if (User.IsInRole("Admin"))
-                        {*@
+                        @if (User.IsInRole("Admin"))
+                        {
                             <a onclick="return confirm('Are You Sure You Want to Delete This Area ?' )"
                                 class="btn btn-danger js-delete" 
                                 asp-action="Delete" asp-route-id="@cat.Id">
                                 <i class="bi bi-trash"></i>
                                 Delete
                             </a>
-                        @*}*@
+                        }
                         
                     <a asp-action="GetAll" asp-route-id="@cat.Id" class="btn btn-secondary">Get All</a>
                     </td>

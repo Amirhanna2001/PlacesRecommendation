@@ -27,9 +27,13 @@
                 <td>
                     Rate From 10
                 </td>
-                <td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
                     Action
                 </td>
+                }
+                
             </tr>
         </thead>
         <tbody>
@@ -41,12 +45,21 @@
                     <td>@Model[i].AreaName</td>
                     <td>@Model[i].Location</td>
                     <td>@Model[i].Rate</td>
-                    <td><a onclick="return confirm('Are You Sure You Want to Delete This Area ?' )"
-                        class="btn btn-danger js-delete" 
-                        asp-action="Delete" asp-route-id="@Model[i].PlaceId">
-                        <i class="bi bi-trash"></i>
-                        Delete
-                    </a></td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td><a onclick="return confirm('Are You Sure You Want to Delete This Area ?' )"
+                            class="btn btn-danger js-delete" 
+                            asp-action="Delete" asp-route-id="@Model[i].PlaceId">
+                            <i class="bi bi-trash"></i>
+                            Delete
+                            </a>
+                                <a asp-action="Edit" asp-route-id="@Model[i].PlaceId" class="btn btn-primary">
+                                <i class="bi bi-trash"></i>
+                                Edit
+                            </a>
+                        </td>
+                    }
+                    
                 </tr>
             }
         </tbody>
