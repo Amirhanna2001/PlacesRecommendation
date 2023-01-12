@@ -18,7 +18,7 @@ namespace PlacesRecommendation.Seeds
             IdentityUser user = await userManager.FindByEmailAsync(defaultUser.Email);
             if (user == null)
             {
-                await userManager.CreateAsync(defaultUser, "111aaaBBB*");
+                await userManager.CreateAsync(defaultUser, "");
                 await userManager.AddToRoleAsync(defaultUser, DefaultRoles.User.ToString());
             }
         }
@@ -34,7 +34,7 @@ namespace PlacesRecommendation.Seeds
             IdentityUser user = await userManager.FindByEmailAsync(defaultUser.Email);
             if (user == null)
             {
-                await userManager.CreateAsync(defaultUser, "111aaaBBB*");
+                await userManager.CreateAsync(defaultUser, "");
                 await userManager.AddToRolesAsync(defaultUser, new List<string> {
                     DefaultRoles.SuperAdmin.ToString(),
                     DefaultRoles.User.ToString() ,
